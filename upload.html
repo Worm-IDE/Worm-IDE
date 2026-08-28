@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worm IDE - Upload Project</title>
+    <style>
+        :root {
+            --bg-primary: #0f111a;
+            --bg-secondary: #161925;
+            --bg-input: #1f2335;
+            --accent: #ff6b6b;
+            --accent-hover: #ff4747;
+            --text-main: #f8f9fa;
+            --text-muted: #a0aec0;
+            --border-color: #2d3142;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .upload-container {
+            background-color: var(--bg-secondary);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        input[type="text"], textarea, select {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-dropzone {
+            border: 2px dashed var(--border-color);
+            background-color: var(--bg-input);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .file-dropzone:hover {
+            background-color: #252a3f;
+            border-color: var(--accent);
+        }
+
+        .file-dropzone p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .file-dropzone input[type="file"] {
+            display: none;
+        }
+
+        .thumbnail-preview-box {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .thumbnail-preview-box:hover {
+            border-color: var(--accent);
+        }
+
+        /* SVG Worm Icon acting as the project thumbnail placeholder */
+        .worm-placeholder {
+            width: 80px;
+            height: 80px;
+            fill: var(--accent);
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .thumbnail-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .checkbox-group input {
+            margin-top: 3px;
+            accent-color: var(--accent);
+        }
+
+        .submit-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-hover);
+        }
+    </style>
+</head>
+<body>
+
+<div class="upload-container">
+    <h1>Upload to WormMod</h1>
+    
+    <form id="uploadForm" onsubmit="event.preventDefault();">
+        <div class="grid-layout">
+            
+            <!-- Left Side: Project details -->
+            <div class="form-group">
+                <label>Project File (.sb3, .worm)</label>
+                <div class="file-dropzone" onclick="document.getElementById('projectFile').click()">
+                    <p>Click or drag file here to upload</p>
+                    <input type="file" id="projectFile" accept=".sb3,.worm" required>
+                </div>
+            </div>
+
+            <!-- Right Side: Worm Thumbnail Upload -->
+            <div class="form-group">
+                <label>Project Thumbnail (4:3 Ratio)</label>
+                <div class="thumbnail-preview-box" onclick="document.getElementById('thumbnailFile').click()">
+                    <!-- Custom Worm SVG Graphic -->
+                    <svg class="worm-placeholder" viewBox="0 0 24 24">
+                        <path d="M22,12C22,14.21 20.21,16 18,16C15.79,16 14,14.21 14,12C14,9.79 12.21,8 10,8C7.79,8 6,9.79 6,12C6,14.21 4.21,16 2,16A1,1 0 0,1 1,15A1,1 0 0,1 2,14C3.1,14 4,13.1 4,12C4,9.79 5.79,8 8,8C10.21,8 12,9.79 12,12C12,14.21 13.79,16 16,16C18.21,16 20,14.21 20,12C20,9.79 18.21,8 16,8A1,1 0 0,1 15,7A1,1 0 0,1 16,6C19.31,6 22,8.69 22,12Z"/>
+                    </svg>
+                    <div class="thumbnail-text">Click to upload custom image</div>
+                    <input type="file" id="thumbnailFile" accept="image/png, image/jpeg" style="display:none;">
+                </div>
+            </div>
+
+            <!-- Title and descriptions -->
+            <div class="form-group full-width">
+                <label for="projectTitle">Project Title</label>
+                <input type="text" id="projectTitle" placeholder="Give your project a catchy name" required>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="projectInstructions">Instructions</label>
+                <textarea id="projectInstructions" placeholder="How do people play your game? (e.g., Use arrow keys to move)"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="projectCredits">Notes and Credits</label>
+                <textarea id="projectCredits" placeholder="Who helped make this? Mention any extensions, assets, or inspiration used."></textarea>
+            </div>
+
+            <!-- Configuration Dropdowns -->
+            <div class="form-group">
+                <label for="platformStyle">Platform Configuration</label>
+                <select id="platformStyle">
+                    <option value="wormmod">WormMod (Advanced Runtime)</option>
+                    <option value="scratch">Scratch 3.0 (Compatibility Mode)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="framerate">Target Framerate</label>
+                <select id="framerate">
+                    <option value="30">30 FPS (Standard)</option>
+                    <option value="60" selected>60 FPS (Smooth)</option>
+                    <option value="interpolated">Interpolated High-FPS</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="stageSize">Stage Resolution</label>
+                <select id="stageSize">
+                    <option value="default">480x360 (Default 4:3)</option>
+                    <option value="widescreen">640x360 (Widescreen 16:9)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="visibility">Visibility Settings</label>
+                <select id="visibility">
+                    <option value="public">Public (Everyone can view & remix)</option>
+                    <option value="unlisted">Unlisted (Link access only)</option>
+                </select>
+            </div>
+
+            <!-- Legal agreements -->
+            <div class="form-group full-width" style="margin-top: 10px;">
+                <label class="checkbox-group">
+                    <input type="checkbox" required>
+                    <span>I confirm this project adheres to the WormMod Community Guidelines and does not feature dangerous, stolen, or inappropriate code.</span>
+                </label>
+            </div>
+
+        </div>
+
+        <button type="submit" class="submit-btn">Publish Project</button>
+    </form>
+</div>
+
+</body>
+</html>
