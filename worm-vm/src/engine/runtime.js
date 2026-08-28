@@ -108,3 +108,21 @@ export default class Runtime {
     this.stopAllThreads();
   }
 }
+import Scheduler from "./scheduler.js";
+import Interpreter from "./interpreter.js";
+
+export default class Runtime {
+  constructor() {
+    this.interpreter = new Interpreter(this);
+    this.scheduler = new Scheduler(this);
+    this.targets = [];
+  }
+
+  start() {
+    const loop = () => {
+      this.scheduler.step();
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+}
