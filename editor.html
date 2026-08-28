@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Scratch Blocks Reference</title>
+    <!-- Include scratchblocks JavaScript and CSS from jsDelivr CDN -->
+    <script src="https://jsdelivr.net"></script>
+    <script src="https://jsdelivr.net"></script>
+  <!-- Load Google Blockly Core and Blocks via UNPKG CDN -->
+    <script src="https://unpkg.com"></script>
+    <script src="https://unpkg.com"></script>
+    <script src="https://unpkg.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 { color: #4d97ff; }
+        h2 { border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 30px; }
+        .block-container {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Scratch Blocks Directory</h1>
+    <p>Worm IDE editor using <strong>scratchblocks</strong>.</p>
+
+    <h2>Motion</h2>
+    <div class="block-container">
+        <pre class="blocks">
+move (10) steps
+turn right (15) degrees
+turn left (15) degrees
+go to [mouse-pointer v]
+go to x: (0) y: (0)
+glide (1) secs to x: (0) y: (0)
+point in direction (90)
+point towards [mouse-pointer v]
+change x by (10)
+set x to (0)
+change y by (10)
+set y to (0)
+if on edge, bounce
+set rotation style [left-right v]
+        </pre>
+    </div>
+
+    <h2>Looks</h2>
+    <div class="block-container">
+        <pre class="blocks">
+say [Hello!] for (2) seconds
+say [Hello!]
+think [Hmm...] for (2) seconds
+think [Hmm...]
+switch costume to [costume2 v]
+next costume
+switch backdrop to [backdrop1 v]
+next backdrop
+change [color v] effect by (25)
+set [color v] effect to (0)
+clear graphic effects
+change size by (10)
+set size to (100) %
+show
+hide
+go to [front v] layer
+go [forward v] (1) layers
+        </pre>
+    </div>
+
+    <h2>Sound</h2>
+    <div class="block-container">
+        <pre class="blocks">
+play sound [Meow v] until done
+start sound [Meow v]
+stop all sounds
+change [pitch v] effect by (10)
+set [pitch v] effect to (100)
+clear sound effects
+change volume by (-10)
+set volume to (100) %
+        </pre>
+    </div>
+
+    <h2>Events</h2>
+    <div class="block-container">
+        <pre class="blocks">
+when flag clicked
+when [space v] key pressed
+when this sprite clicked
+when backdrop switches to [backdrop1 v]
+when [loudness v] > (10)
+when I receive [message1 v]
+broadcast [message1 v]
+broadcast [message1 v] and wait
+        </pre>
+    </div>
+
+    <h2>Control</h2>
+    <div class="block-container">
+        <pre class="blocks">
+wait (1) seconds
+repeat (10)
+    move (10) steps
+end
+forever
+    move (10) steps
+end
+if <not <touching [edge v]>> then
+    move (10) steps
+end
+if <touching [edge v]?> then
+    turn right (180) degrees
+else
+    move (10) steps
+end
+wait until <key [space v] pressed?>
+repeat until <touching [mouse-pointer v]?>
+    move (10) steps
+end
+stop [all v]
+when I start as a clone
+create clone of [myself v]
+delete this clone
+        </pre>
+    </div>
+
+    <h2>Sensing</h2>
+    <div class="block-container">
+        <pre class="blocks">
+touching [mouse-pointer v]?
+touching color [#ff0000]?
+color [#ff0000] is touching [#0000ff]?
+distance to [mouse-pointer v]
+ask [What's your name?] and wait
+answer
+key [space v] pressed?
+mouse down?
+mouse x
+mouse y
+set drag mode [draggable v]
+loudness
+timer
+reset timer
+backdrop # of stage
+current [minute v]
+days since 2000
+username
+        </pre>
+    </div>
+
+    <h2>Operators</h2>
+    <div class="block-container">
+        <pre class="blocks">
+((1) + (1))
+((1) - (1))
+((1) * (1))
+((1) / (1))
+pick random (1) to (10)
+< (5) < (10) >
+< (5) = (10) >
+< (5) > (10) >
+<and <>?>
+<or <>>
+<not <>>
+join [apple ] [banana]
+letter (1) of [apple]
+length of [apple]
+<[apple] contains [a]?>
+((1) mod (1))
+round (1.5)
+(abs of (-1))
+        </pre>
+    </div>
+
+    <h2>Variables & Lists</h2>
+    <div class="block-container">
+        <pre class="blocks">
+set [my variable v] to (0)
+change [my variable v] by (1)
+show variable [my variable v]
+hide variable [my variable v]
+add [thing] to [list v]
+delete (1) of [list v]
+delete all of [list v]
+insert [thing] at (1) of [list v]
+replace item (1) of [list v] with [thing]
+item (1) of [list v]
+item # of [thing] in [list v]
+length of [list v]
+<[list v] contains [thing]?>
+show list [list v]
+hide list [list v]
+        </pre>
+    </div>
+
+    <!-- Automatically render all <pre class="blocks"> elements into Scratch SVGs -->
+    <script>
+        scratchblocks.renderMatching('pre.blocks', {
+            style: 'scratch3',
+            scale: 1
+        });
+    </script>
+</body>
+</html>
