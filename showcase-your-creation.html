@@ -40,6 +40,126 @@
         <h2>Hi!</h2>
         <p>This is the showcase page of your Worm IDE project. Check published projects below, or make it in the editor.</p>
     </main>
+<style>
+        /* Base Styling & Theme */
+        :root {
+            --bg-primary: #0c0d12;
+            --bg-secondary: #161824;
+            --bg-card: #1f2336;
+            --text-main: #f0f3f8;
+            --text-muted: #9aa5b9;
+            --accent-blue: #00c3ff;
+            --feature-gold: linear-gradient(135deg, #ffd700, #ffa500);
+            --border-radius: 12px;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section Headings */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--bg-secondary);
+            padding-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+    <div class="dashboard-container">
+
+    <!-- FEATURED PROJECTS ROW -->
+    <div class="section-header">
+        <div class="section-title">⭐ Featured Projects</div>
+        <a href="#" class="section-view-more">View All</a>
+    </div>
+    
+    <div class="project-grid">
+        <!-- Card 1: Featured -->
+        <div class="project-card featured">
+            <span class="badge">Featured</span>
+            <div class="thumbnail-wrapper">
+                <img src="https://placehold.co" alt="Project Thumbnail">
+            </div>
+            <div class="project-info">
+                <p class="project-name">Multiplayer Platformer V2</p>
+                <p class="project-author">by @GarboCreator</p>
+            </div>
+        </div>
+
+        <!-- Card 2: Featured -->
+        <div class="project-card featured">
+            <span class="badge">Featured</span>
+            <div class="thumbnail-wrapper">
+                <img src="https://placehold.co" alt="Project Thumbnail">
+            </div>
+            <div class="project-info">
+                <p class="project-name">Raycaster 3D Sandbox</p>
+                <p class="project-author">by @Babybear16</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECENTLY UPLOADED ROW -->
+    <div class="section-header" style="margin-top: 40px;">
+        <div class="section-title">🕒 Recently Uploaded</div>
+        <a href="#" class="section-view-more">View All</a>
+    </div>
+
+    <div class="project-grid">
+        <!-- Standard Card 1 -->
+        <div class="project-card">
+            <div class="thumbnail-wrapper">
+                <img src="https://placehold.co" alt="Project Thumbnail">
+            </div>
+            <div class="project-info">
+                <p class="project-name">Test Physics Simulation</p>
+                <p class="project-author">by @Scratcher99</p>
+            </div>
+        </div>
+
+        <!-- Standard Card 2 -->
+        <div class="project-card">
+            <div class="thumbnail-wrapper">
+                <img src="https://placehold.co" alt="Project Thumbnail">
+            </div>
+            <div class="project-info">
+                <p class="project-name">Clicker Game Tycoon</p>
+                <p class="project-author">by @ModderX</p>
+            </div>
+        </div>
+
+        <!-- Standard Card 3 -->
+        <div class="project-card">
+            <div class="thumbnail-wrapper">
+                <img src="https://placehold.co" alt="Project Thumbnail">
+            </div>
+            <div class="project-info">
+                <p class="project-name">Custom Extension Test</p>
+                <p class="project-author">by @DevWorm</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
