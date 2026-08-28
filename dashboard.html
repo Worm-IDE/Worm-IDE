@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+</head>
+<body>
+  <div id="content"></div>
+
+  <script>
+    // Simulate checking login status (change to true if logged in)
+    const isLoggedIn = false; 
+    const user = { name: "Jane Doe" };
+
+    const contentDiv = document.getElementById("content");
+
+    if (!isLoggedIn) {
+      contentDiv.innerHTML = "<h1>403</h1><p>User Not Found</p>";
+    } else {
+      contentDiv.innerHTML = `<h1>Welcome, ${user.name}</h1>`;
+    }
+  </script>
+</body>
+</html>
